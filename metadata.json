@@ -7,48 +7,87 @@
   "source": "https://github.com/kemra102/puppet-auditd",
   "project_page": "https://github.com/kemra102/puppet-auditd",
   "issues_url": "https://github.com/kemra102/puppet-auditd/issues",
-  "tags": ["audit", "auditd", "auditing", "monitoring", "accounting", "logging", "logs"],
+  "dependencies": [
+    {
+      "name": "puppetlabs-stdlib",
+      "version_requirement": ">= 4.6.0 < 5.0.0"
+    },
+    {
+      "name": "puppetlabs-concat",
+      "version_requirement": ">= 1.1.0 < 3.0.0"
+    }
+  ],
   "operatingsystem_support": [
     {
-    "operatingsystem": "RedHat",
-    "operatingsystemrelease": [ "5", "6", "7" ]
+      "operatingsystem": "RedHat",
+      "operatingsystemrelease": [
+        "5",
+        "6",
+        "7"
+      ]
     },
     {
-    "operatingsystem": "SLES",
-    "operatingsystemrelease": [ "10", "11", "12" ]
+      "operatingsystem": "SLES",
+      "operatingsystemrelease": [
+        "10",
+        "11",
+        "12"
+      ]
     },
     {
-    "operatingsystem": "CentOS",
-    "operatingsystemrelease": [ "5", "6", "7" ]
+      "operatingsystem": "CentOS",
+      "operatingsystemrelease": [
+        "5",
+        "6",
+        "7"
+      ]
     },
     {
-    "operatingsystem": "Scientific",
-    "operatingsystemrelease": [ "5", "6", "7" ]
+      "operatingsystem": "Scientific",
+      "operatingsystemrelease": [
+        "5",
+        "6",
+        "7"
+      ]
     },
     {
-    "operatingsystem": "OracleLinux",
-    "operatingsystemrelease": [ "5", "6", "7" ]
+      "operatingsystem": "OracleLinux",
+      "operatingsystemrelease": [
+        "5",
+        "6",
+        "7"
+      ]
     },
     {
-    "operatingsystem": "Amazon"
+      "operatingsystem": "Amazon"
     },
     {
-    "operatingsystem": "Fedora",
-    "operatingsystemrelease": [ "22", "23" ]
+      "operatingsystem": "Fedora",
+      "operatingsystemrelease": [
+        "22",
+        "23"
+      ]
     },
     {
-    "operatingsystem": "Ubuntu",
-    "operatingsystemrelease": [ "12.04", "14.04", "16.04" ]
+      "operatingsystem": "Ubuntu",
+      "operatingsystemrelease": [
+        "12.04",
+        "14.04",
+        "16.04"
+      ]
     },
     {
-    "operatingsystem": "Debian",
-    "operatingsystemrelease": [ "7", "8" ]
+      "operatingsystem": "Debian",
+      "operatingsystemrelease": [
+        "7",
+        "8"
+      ]
     },
     {
-    "operatingsystem": "Archlinux"
+      "operatingsystem": "Archlinux"
     },
     {
-    "operatingsystem": "Gentoo"
+      "operatingsystem": "Gentoo"
     }
   ],
   "requirements": [
@@ -57,8 +96,16 @@
       "version_requirement": ">= 4.6.0"
     }
   ],
-  "dependencies": [
-    {"name":"puppetlabs-stdlib","version_requirement":">= 4.6.0 < 5.0.0"},
-    {"name":"puppetlabs-concat","version_requirement":">= 1.1.0 < 3.0.0"}
-  ]
+  "tags": [
+    "audit",
+    "auditd",
+    "auditing",
+    "monitoring",
+    "accounting",
+    "logging",
+    "logs"
+  ],
+  "pdk-version": "1.17.0",
+  "template-url": "https://github.com/puppetlabs/pdk-templates#1.17.0",
+  "template-ref": "tags/1.17.0-0-gd3a4319"
 }

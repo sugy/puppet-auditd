@@ -23,10 +23,13 @@
 #
 # [*log_format*]
 #   The log format describes how the information should be stored on disk.
-#   There are 2 options: RAW and NOLOG. If set to RAW , the audit records
-#   will be stored in a format exactly as the kernel sends it. If this
-#   option is set to NOLOG then all audit information is discarded instead
-#   of writing to disk. This mode does not affect data sent to the audit
+#   There are 3 options: RAW, ENRICHED and NOLOG. If set to RAW , the audit records
+#   will be stored in a format exactly as the kernel sends it. If this option is
+#   is set to ENRICHED it will resolve all uid, gid, syscall, architecture, and
+#   socket address address information before writing the event to disk. This aids
+#   in making sense of eveents created on one system but reported/analizedon another
+#   system. If this option is set to NOLOG then all audit information is discarded
+#   instead of writing to disk. This mode does not affect data sent to the audit
 #   event dispatcher.
 #
 # [*log_group*]
@@ -388,8 +391,8 @@ class auditd (
   validate_string($package_name)
 
   validate_absolute_path($log_file)
-  validate_re($log_format, '^(RAW|NOLOG)$',
-    "${log_format} is not supported for log_format. Allowed values are 'RAW' and 'NOLOG'.")
+  validate_re($log_format, '^(RAW|NOLOG|ENRICHED)$',
+    "${log_format} is not supported for log_format. Allowed values are 'RAW', 'ENRICHED' and 'NOLOG'.")
   validate_string($log_group)
   if $write_logs != undef {
     validate_re($write_logs, '^(yes|no)$',

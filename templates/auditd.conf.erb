@@ -11,8 +11,12 @@ priority_boost = <%= @priority_boost %>
 flush = <%= @flush %>
 freq = <%= @freq %>
 num_logs = <%= @num_logs %>
+<% unless @disp_qos.nil? %>
 disp_qos = <%= @disp_qos %>
+<% end -%>
+<% unless @dispatcher.nil? %>
 dispatcher = <%= @dispatcher %>
+<% end -%>
 name_format = <%= @name_format %>
 name = <%= @admin %>
 max_log_file = <%= @max_log_file %>

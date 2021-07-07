@@ -9,6 +9,8 @@ class auditd::params {
       $rules_file         = '/etc/audit/rules.d/audit.rules'
       $has_audisp_config  = true
       $audisp_dir         = '/etc/audisp'
+      $disp_qos           = 'lossy'
+      $dispatcher         = '/sbin/audispd'
 
       case $::lsbmajdistrelease {
         '8': {
@@ -25,6 +27,8 @@ class auditd::params {
       $package_name       = 'audit'
       $has_audisp_config  = true
       $audisp_dir         = '/etc/audisp'
+      $disp_qos           = 'lossy'
+      $dispatcher         = '/sbin/audispd'
       if versioncmp($::operatingsystemrelease, '12') >= 0 and $::operatingsystem == 'SLES' {
         $audisp_package     = 'audit-audispd-plugins'
         $manage_audit_files = true
@@ -48,9 +52,13 @@ class auditd::params {
       if versioncmp($::operatingsystemrelease, '8') >= 0 {
         $has_audisp_config = false
         $audisp_dir        = '/etc/audit'
+        $disp_qos          = undef
+        $dispatcher        = undef
       } else {
         $has_audisp_config = true
         $audisp_dir        = '/etc/audisp'
+        $disp_qos          = 'lossy'
+        $dispatcher        = '/sbin/audispd'
       }
 
       if $::operatingsystem != 'Amazon' and versioncmp($::operatingsystemrelease, '7') >= 0 {
@@ -72,6 +80,8 @@ class auditd::params {
       $service_stop       = '/usr/bin/kill -s SIGTERM $(cat /var/run/auditd.pid)'
       $has_audisp_config  = true
       $audisp_dir         = '/etc/audisp'
+      $disp_qos           = undef
+      $dispatcher         = undef
     }
     'Gentoo': {
       $package_name       = 'audit'
@@ -82,6 +92,8 @@ class auditd::params {
       $service_stop       = '/etc/init.d/auditd stop'
       $has_audisp_config  = true
       $audisp_dir         = '/etc/audisp'
+      $disp_qos           = undef
+      $dispatcher         = undef
     }
     default: {
       fail("${::osfamily} is not supported by auditd")
@@ -97,8 +109,6 @@ class auditd::params {
   $flush                   = 'incremental_async'
   $freq                    = '20'
   $num_logs                = '5'
-  $disp_qos                = 'lossy'
-  $dispatcher              = '/sbin/audispd'
   $name_format             = 'none'
   $admin                   = $::hostname
   $max_log_file            = '6'

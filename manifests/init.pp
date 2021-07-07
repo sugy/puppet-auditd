@@ -403,9 +403,13 @@ class auditd (
     "${flush} is not supported for flush. Allowed values are 'none', 'incremental', 'incremental_async', 'data' and 'sync'.")
   validate_integer($freq)
   validate_integer($num_logs)
-  validate_re($disp_qos, '^(lossy|lossless)$',
-    "${disp_qos} is not supported for disp_qos. Allowed values are 'lossy' and 'lossless'.")
-  validate_absolute_path($dispatcher)
+  if $disp_qos != undef {
+    validate_re($disp_qos, '^(lossy|lossless)$',
+      "${disp_qos} is not supported for disp_qos. Allowed values are 'lossy' and 'lossless'.")
+  }
+  if $disp_qos != undef {
+    validate_absolute_path($dispatcher)
+  }
   validate_re($name_format, '^(none|hostname|fqd|numeric|user)$',
     "${name_format} is not supported for name_format. Allowed values are 'none', 'hostname', 'fqd', 'numeric' and 'user'.")
   validate_string($admin)

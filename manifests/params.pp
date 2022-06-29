@@ -24,25 +24,17 @@ class auditd::params {
       }
     }
     'Suse': {
-      $package_name       = 'audit'
-      $audisp_dir         = '/etc/audisp'
-      $disp_qos           = 'lossy'
-      $dispatcher         = '/sbin/audispd'
-      # this is a bit ugly. Everything older than SLES15 SP4 needs $has_audisp_config = true.
+      $package_name = 'audit'
+      $audisp_dir   = '/etc/audisp'
+      $disp_qos     = 'lossy'
+      $dispatcher   = '/sbin/audispd'
+
       # Starting with SLES15 SP4 it uses auditd >= 3.0 and has no audisp configuration anymore.
-      if versioncmp($::facts['os']['release']['major'], '15') == 0 and $::facts['os']['family'] == 'SLES' {
-        if versioncmp($::facts['os']['release']['minor'], '4') >= 0 {
-          $has_audisp_config  = false
-        }
-        else {
-          $has_audisp_config  = true
-        }
-      }
-      elsif versioncmp($::facts['os']['release']['major'], '15') < 0 and $::facts['os']['family'] == 'SLES' {
-        $has_audisp_config  = true
+      if versioncmp($::facts['os']['release']['full'], '15.4') >= 0 {
+        $has_audisp_config = false
       }
       else {
-        $has_audisp_config  = false
+        $has_audisp_config = true
       }
       if versioncmp($::operatingsystemrelease, '12') >= 0 and $::operatingsystem == 'SLES' {
         $audisp_package     = 'audit-audispd-plugins'

@@ -36,7 +36,7 @@ class auditd::params {
       else {
         $has_audisp_config = true
       }
-      if versioncmp($::operatingsystemrelease, '12') >= 0 and $::operatingsystem == 'SLES' {
+      if versioncmp($::facts['os']['release']['major'], '12') >= 0 {
         $audisp_package     = 'audit-audispd-plugins'
         $manage_audit_files = true
         $rules_file         = '/etc/audit/rules.d/puppet.rules'

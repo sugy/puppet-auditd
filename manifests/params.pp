@@ -152,4 +152,7 @@ class auditd::params {
   $manage_service         = true
   $service_ensure         = 'running'
   $service_enable         = true
+
+  # these files are ignored and won't get purged by the module
+  $ignored_files_on_purge = []
 }

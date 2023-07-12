@@ -394,82 +394,82 @@ class auditd (
 ) inherits auditd::params {
 
   # Validate all our variables
-  validate_string($package_name)
+  validate_legacy('Optional[String]', 'validate_string', $package_name)
 
-  validate_absolute_path($log_file)
-  validate_re($log_format, '^(RAW|NOLOG|ENRICHED)$',
+  validate_legacy('Optional[String]', 'validate_absolute_path', $log_file)
+  validate_legacy('Optional[String]', 'validate_re', $log_format, '^(RAW|NOLOG|ENRICHED)$',
     "${log_format} is not supported for log_format. Allowed values are 'RAW', 'ENRICHED' and 'NOLOG'.")
-  validate_string($log_group)
+  validate_legacy('Optional[String]', 'validate_string', $log_group)
   if $write_logs != undef {
-    validate_re($write_logs, '^(yes|no)$',
+    validate_legacy('Optional[String]', 'validate_re', $write_logs, '^(yes|no)$',
       "${write_logs} is not supported for write_logs. Allowed values are 'yes' and 'no'.")
   }
-  validate_integer($priority_boost)
-  validate_re($flush, '^(none|incremental|incremental_async|data|sync)$',
+  validate_legacy('Optional[Integer]', 'validate_integer', $priority_boost)
+  validate_legacy('Optional[String]', 'validate_re', $flush, '^(none|incremental|incremental_async|data|sync)$',
     "${flush} is not supported for flush. Allowed values are 'none', 'incremental', 'incremental_async', 'data' and 'sync'.")
-  validate_integer($freq)
-  validate_integer($num_logs)
+  validate_legacy('Optional[Integer]', 'validate_integer', $freq)
+  validate_legacy('Optional[Integer]', 'validate_integer', $num_logs)
   if $disp_qos != undef {
-    validate_re($disp_qos, '^(lossy|lossless)$',
+    validate_legacy('Optional[String]', 'validate_re', $disp_qos, '^(lossy|lossless)$',
       "${disp_qos} is not supported for disp_qos. Allowed values are 'lossy' and 'lossless'.")
   }
   if $disp_qos != undef {
-    validate_absolute_path($dispatcher)
+    validate_legacy('Optional[String]', 'validate_absolute_path', $dispatcher)
   }
-  validate_re($name_format, '^(none|hostname|fqd|numeric|user)$',
+  validate_legacy('Optional[String]', 'validate_re', $name_format, '^(none|hostname|fqd|numeric|user)$',
     "${name_format} is not supported for name_format. Allowed values are 'none', 'hostname', 'fqd', 'numeric' and 'user'.")
-  validate_string($admin)
-  validate_integer($max_log_file)
-  validate_re($max_log_file_action, '^(ignore|syslog|suspend|rotate|keep_logs)$',
+  validate_legacy('Optional[String]', 'validate_string', $admin)
+  validate_legacy('Optional[Integer]', 'validate_integer', $max_log_file)
+  validate_legacy('Optional[String]', 'validate_re', $max_log_file_action, '^(ignore|syslog|suspend|rotate|keep_logs)$',
     "${max_log_file_action} is not supported for max_log_file_action. Allowed values are 'ignore', 'syslog', 'suspend', 'rotate' and 'keep_logs'.")
-  validate_integer($space_left)
-  validate_re($space_left_action, '^(ignore|syslog|email|exec|suspend|single|halt)$',
+  validate_legacy('Optional[Integer]', 'validate_integer', $space_left)
+  validate_legacy('Optional[String]', 'validate_re', $space_left_action, '^(ignore|syslog|email|exec|suspend|single|halt)$',
     "${space_left_action} is not supported for space_left_action. Allowed values are 'ignore', 'syslog', 'email', 'exec', 'suspend', 'single' and 'halt'.")
-  validate_string($action_mail_acct)
-  validate_integer($admin_space_left)
-  validate_re($admin_space_left_action, '^(ignore|syslog|email|exec|suspend|single|halt)$',
+  validate_legacy('Optional[String]', 'validate_string', $action_mail_acct)
+  validate_legacy('Optional[Integer]', 'validate_integer', $admin_space_left)
+  validate_legacy('Optional[String]', 'validate_re', $admin_space_left_action, '^(ignore|syslog|email|exec|suspend|single|halt)$',
     "${admin_space_left_action} is not supported for admin_space_left_action. Allowed values are 'ignore', 'syslog', 'email', 'exec', 'suspend', 'single' and 'halt'.")
-  validate_re($disk_full_action, '^(ignore|syslog|exec|suspend|single|halt)$',
+  validate_legacy('Optional[String]', 'validate_re', $disk_full_action, '^(ignore|syslog|exec|suspend|single|halt)$',
     "${disk_full_action} is not supported for disk_full_action. Allowed values are 'ignore', 'syslog', 'exec', 'suspend', 'single' and 'halt'.")
-  validate_re($disk_error_action, '^(ignore|syslog|exec|suspend|single|halt)$',
+  validate_legacy('Optional[String]', 'validate_re', $disk_error_action, '^(ignore|syslog|exec|suspend|single|halt)$',
     "${disk_error_action} is not supported for disk_error_action. Allowed values are 'ignore', 'syslog', 'exec', 'suspend', 'single' and 'halt'.")
   if $tcp_listen_port != undef {
-    validate_integer($tcp_listen_port)
+    validate_legacy('Optional[Integer]', 'validate_integer', $tcp_listen_port)
   }
-  validate_integer($tcp_listen_queue)
+  validate_legacy('Optional[Integer]', 'validate_integer', $tcp_listen_queue)
   if $tcp_max_per_addr != undef {
-    validate_integer($tcp_max_per_addr)
+    validate_legacy('Optional[Integer]', 'validate_integer', $tcp_max_per_addr)
   }
   if $tcp_client_ports != undef {
-    validate_string($tcp_client_ports)
+    validate_legacy('Optional[String]', 'validate_string', $tcp_client_ports)
   }
-  validate_integer($tcp_client_max_idle)
-  validate_re($enable_krb5, '^(yes|no)$',
+  validate_legacy('Optional[Integer]', 'validate_integer', $tcp_client_max_idle)
+  validate_legacy('Optional[String]', 'validate_re', $enable_krb5, '^(yes|no)$',
     "${enable_krb5} is not supported for enable_krb5. Allowed values are 'no' and 'yes'.")
-  validate_string($krb5_principal)
+  validate_legacy('Optional[String]', 'validate_string', $krb5_principal)
   if $tcp_client_ports != undef {
-    validate_absolute_path($krb5_key_file)
+    validate_legacy('Optional[String]', 'validate_absolute_path', $krb5_key_file)
   }
-  validate_bool($continue_loading)
+  validate_legacy('Optional[Boolean]', 'validate_bool', $continue_loading)
 
-  validate_absolute_path($rules_file)
-  validate_bool($manage_audit_files)
-  validate_integer($buffer_size)
+  validate_legacy('Optional[String]', 'validate_absolute_path', $rules_file)
+  validate_legacy('Optional[Boolean]', 'validate_bool', $manage_audit_files)
+  validate_legacy('Optional[Integer]', 'validate_integer', $buffer_size)
 
-  validate_integer($audisp_q_depth)
-  validate_re($audisp_overflow_action, '^(ignore|syslog|suspend|single|halt)$',
+  validate_legacy('Optional[Integer]', 'validate_integer', $audisp_q_depth)
+  validate_legacy('Optional[String]', 'validate_re', $audisp_overflow_action, '^(ignore|syslog|suspend|single|halt)$',
     "${audisp_overflow_action} is not supported for 'audisp_overflow_action'. Allowed values are 'ignore', 'syslog', 'suspend', 'single' & 'halt'.")
-  validate_integer($audisp_priority_boost)
-  validate_integer($audisp_max_restarts)
+  validate_legacy('Optional[Integer]', 'validate_integer', $audisp_priority_boost)
+  validate_legacy('Optional[Integer]', 'validate_integer', $audisp_max_restarts)
   if $audisp_name {
-    validate_string($audisp_name)
+    validate_legacy('Optional[String]', 'validate_string', $audisp_name)
   }
 
-  validate_bool($manage_service)
-  validate_string($service_restart)
-  validate_string($service_stop)
-  validate_string($service_ensure)
-  validate_bool($service_enable)
+  validate_legacy('Optional[Boolean]', 'validate_bool', $manage_service)
+  validate_legacy('Optional[String]', 'validate_string', $service_restart)
+  validate_legacy('Optional[String]', 'validate_string', $service_stop)
+  validate_legacy('Optional[String]', 'validate_string', $service_ensure)
+  validate_legacy('Optional[Boolean]', 'validate_bool', $service_enable)
 
   # Install package
   package { $package_name:
